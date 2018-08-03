@@ -1,0 +1,24 @@
+{
+    "name": "rdotti/contatti",
+    "description": "Contatti Package",
+    "authors": [
+        {
+            "name": "Riccardo Dotti",
+            "email": "riccardodotti.web@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Rdotti\\Contatti\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rdotti\\Contatti\\Providers\\ContattiServiceProvider"
+            ]
+        }
+    }
+}
