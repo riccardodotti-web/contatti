@@ -26,7 +26,7 @@ class ContattiServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        //$this->app->make('Rdotti\Contatti\Http\Controllers\ContattiController');
+        $this->mergeConfigFrom(__DIR__ . '/config/contatti.php', 'contatti');
         $this->loadViewsFrom(__DIR__.'/views/contatti', 'contatti');
     }
 }

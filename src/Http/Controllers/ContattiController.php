@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Rdotti\Contatti\Contatti;
 use Mail;
+use Rdotti\Contatti\Mail\MessageSent;
 
 
 class ContattiController extends Controller
@@ -37,18 +38,14 @@ class ContattiController extends Controller
         
         Contatti::create($contact);
 
-        Mail::send('email',
-        array(
-            'firstname' => $request->get('firstname'),
-            'lastname' => $request->get('lastname'),
-            'email' => $request->get('email'),
-            'textmessage' => $request->get('message')
-        ), function($message)
-        {
-            $message->from('riccardodotti.web@gmail.com');
-            $message->to('riccardodotti.web@gmail.com', 'Admin')->subject('Cloudways Feedback');
-        });
-
+        $firstname = $request->get('firstname');
+        $lastname = $request->get('lastname');
+        $email = $request->get('email');
+        $text = $request->get('message');
+        //SendMail
+        Mail::to(config('contatti.email'))->send(new MessageSent($firstname, $lastname, $email, $text));
+        //Everything OK
+        
         return back()->with('success', 'TNX for your Contact!');;
     }
 }
